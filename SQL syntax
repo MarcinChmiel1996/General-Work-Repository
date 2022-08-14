@@ -1,0 +1,70 @@
+/* Here you can find SQL syntax for:
+
+a)  Database creation
+b)  Inserting data
+c)  Various data queries.
+
+Feel free to share your feedback! Note that any detailed explanation and comments can be found in PowerPoint presentation attached to this project.
+
+a) Database creation */
+
+CREATE TABLE chess_players (
+player_id INT PRIMARY KEY,
+first_name VARCHAR (15),
+last_name VARCHAR (15),
+date_of_birth DATE,
+club VARCHAR (30),
+country VARCHAR NOT NULL(3)
+);
+
+CREATE TABLE elo_rating (
+elo_id INT PRIMARY KEY,
+quantity INT NOT NULL,
+player_id INT,
+FOREIGN KEY (player_id) REFERENCES chess_players(player_id) ON DELETE SET NULL
+);
+
+CREATE TABLE chess_openings (
+opening_id INT PRIMARY KEY,
+opening_name VARCHAR(20),
+how_often_played INT,
+for_white VARCHAR (1),
+for_black VARCHAR (1),
+CHECK (for_white IN(‘Y’,’N’) AND for_black IN(‘Y’,’N’))
+);
+
+CREATE TABLE results (
+opening_id INT PRIMARY KEY,
+game_number INT PRIMARY KEY,
+white_won VARCHAR (1),
+black_won VARCHAR (1),
+draw VARCHAR (1),
+CHECK (white_won IN(‘Y’,’N’) AND black_won IN(‘Y’,’N’) AND draw IN(‘Y’,’N’))
+);
+
+CREATE TABLE played_opening (
+player_id INT PRIMARY KEY,
+opening_id INT PRIMARY KEY,
+how_often_played INT,
+FOREIGN KEY (how_often_played) REFERENCES chess_openings(how_often_played) ON DELETE SET NULL
+);
+
+/* b) Inserting data into created tables (examples) */
+
+INSERT INTO chess_players (player_id, first_name, last_name, date_of_birth, club, country)
+VALUES ( 1, ‘Magnus’, ‘Carlsen’, 01-01-1990, ‘Oslo Chess’, ‘NOR’);
+
+INSERT INTO  elo_rating (elo_id, quantity, player_id)
+VALUES (1, 2850, 1);
+
+INSERT INTO played opening (player_id, opening_id, how_often_played)
+VALUES (1,1,23);
+
+/* c) Example queries
+
+1.    What is the most popular opening among the players rated above 2500 ELO points?
+2.	Which opening gives the best and the worst results for black?
+3.	In what opening the current number 1 on ELO rating list has the best results by white and black?
+4.	Which percentage of games has been drawn, when the opening played was Najdorf?
+
+To be continued... /*
