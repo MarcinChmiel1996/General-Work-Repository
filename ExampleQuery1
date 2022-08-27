@@ -1,0 +1,18 @@
+*/What is the most popular opening among the players rated above 2500 ELO points
+and what is the sum of their ratings in each nation?/*
+
+
+
+
+SELECT chess_openings.opening_name AS ChosenOpening, played_opening.how_often_played AS Frequency FROM chess_openings,
+SUM(elo_rating.quantity) AS Average
+
+WHERE elo_rating.quantity > 2500
+
+INNER JOIN played_opening ON chess_openings.opening_id = played_opening.opening_id
+INNER JOIN chess_players ON played_opening.player_id = chess_players.player.id
+INNER JOIN elo_rating ON chess_players.player_id = elo_rating.player_id
+
+GROUP BY chess_players.country
+
+ORDER BY Frequency DESC LIMIT 1;
