@@ -4,8 +4,8 @@ and what is the sum of their ratings in each nation?/*
 
 
 
-SELECT chess_openings.opening_name AS ChosenOpening, played_opening.how_often_played AS Frequency FROM chess_openings,
-SUM(elo_rating.quantity) AS Average
+SELECT chess_openings.opening_name AS ChosenOpening, played_opening.how_often_played AS Frequency,
+SUM(elo_rating.quantity) AS Total FROM chess_openings
 
 WHERE elo_rating.quantity > 2500
 
