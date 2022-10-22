@@ -2,9 +2,6 @@
 
 a)  Database creation
 b)  Inserting data
-c)  Various data queries.
-
-Feel free to share your feedback! Note that any detailed explanation and comments can be found in PowerPoint presentation attached to this project.
 
 a) Database creation */
 
@@ -59,12 +56,3 @@ VALUES (1, 2850, 1);
 
 INSERT INTO played opening (player_id, opening_id, how_often_played)
 VALUES (1,1,23);
-
-/* c) Example queries
-
-1.    What is the most popular opening among the players rated above 2500 ELO points?
-2.	Which opening gives the best and the worst results for black?
-3.	In what opening the current number 1 on ELO rating list has the best results by white and black?
-4.	Which percentage of games has been drawn, when the opening played was Najdorf?
-
-To be continued... /*
