@@ -1,0 +1,26 @@
+DELIMITER $$
+
+CREATE FUNCTION emp_info (p_emp_first_name VARCHAR (20),
+ p_emp_last_name VARCHAR (20)) RETURNS DECIMAL (10,2)
+ DETERMINISTIC
+
+BEGIN
+
+DECLARE v_emp_info DECIMAL (10,2);
+
+SELECT salary
+INTO v_emp_info FROM
+salaries s
+JOIN
+employees e ON
+e.emp_no= s.emp_no
+WHERE e.first_name=p_emp_first_name
+AND
+e.last_name=p_emp_last_name;
+
+RETURN v_emp_info;
+END $$
+
+DELIMITER ;
+
+SELECT emp_info('Aruna','Journel');
