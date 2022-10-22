@@ -1,0 +1,25 @@
+/* A sample procedure with in and out parameters.
+The user inserts first and last name of an employee, and SQL returns an employee's ID. */
+
+USE employees;
+
+DELIMITER $$
+
+CREATE PROCEDURE insert_name ( IN p_emp_first_name VARCHAR(20),
+ IN p_emp_last_name VARCHAR (20), OUT p_emp_ID INTEGER)
+BEGIN
+SELECT e.emp_no 
+INTO p_emp_ID FROM
+employees e
+WHERE e.first_name= p_emp_first_name
+AND
+e.last_name= p_emp_last_name;
+
+
+END $$
+
+DELIMITER ;
+
+SET @v_emp_ID= 0;
+CALL employees.insert_name ('Aruna','Journel',@v_emp_ID);
+SELECT@v_emp_ID;
